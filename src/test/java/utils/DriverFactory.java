@@ -10,6 +10,7 @@ import pages.LoginPage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -40,6 +41,14 @@ public class DriverFactory {
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(new AppiumFieldDecorator(driver), new LoginPage());
+    }
+
+    public static void chageDriverContexToWeb(AppiumDriver driver){
+        Set<String> contextNames = DriverFactory.driver.getContextHandles();
+        for (String contextName : contextNames) {
+            if (contextName.contains("WEBVIEW"))
+                DriverFactory.driver.context(contextName);
+        }
     }
 
 //    public static AppiumDriver getDriver() throws Exception {

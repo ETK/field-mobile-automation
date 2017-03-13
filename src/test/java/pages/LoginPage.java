@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.net.MalformedURLException;
-import java.util.Set;
+
+import static utils.DriverFactory.chageDriverContexToWeb;
 
 /**
  * Created by shebbar on 06/03/17.
@@ -29,30 +30,14 @@ public class LoginPage extends BasePage {
     }
 
     public static void login() throws InterruptedException {
-            System.out.println(driver.getContext());
-
-
-        Set<String> s = driver.getContextHandles();
-
-        for (String handle : s)
-        {
-            System.out.println(handle);
-        }
-
-        driver.context("WEBVIEW_com.aconex.field.mobile.ota");
-        System.out.println("*********");
-        System.out.println(driver.getContext());
-
-//        waitUntilElementIsVisible(userId);
-        Thread.sleep(5000);
-
-
+        chageDriverContexToWeb(driver);
         closeGuide.click();
         userId.click();
         userId.sendKeys("mjenner");
         password.click();
         password.sendKeys("Auth3nt1c");
 
-
     }
+
+
 }
