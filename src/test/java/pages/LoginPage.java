@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
     }
 
     public static void login() throws InterruptedException {
-        chageDriverContexToWeb(driver);
+        chageDriverContexToWeb();
         closeGuide.click();
         userId.click();
         userId.sendKeys("mjenner");

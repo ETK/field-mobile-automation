@@ -3,6 +3,7 @@ package utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
@@ -43,11 +44,11 @@ public class DriverFactory {
         PageFactory.initElements(new AppiumFieldDecorator(driver), new LoginPage());
     }
 
-    public static void chageDriverContexToWeb(AppiumDriver driver){
-        Set<String> contextNames = DriverFactory.driver.getContextHandles();
+    public static void chageDriverContexToWeb(){
+        Set<String> contextNames = driver.getContextHandles();
         for (String contextName : contextNames) {
             if (contextName.contains("WEBVIEW"))
-                DriverFactory.driver.context(contextName);
+                driver.context(contextName);
         }
     }
 
@@ -57,5 +58,10 @@ public class DriverFactory {
 //        } else
 //            return driver;
 //    }
+
+    @AfterClass
+    public static void teardown() {
+        driver.quit();
+    }
 
 }
