@@ -2,6 +2,7 @@ package utils;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -39,6 +40,18 @@ public class DriverFactory {
         capabilities.setCapability("appActivity","com.aconex.field.mobile.ota.FieldActivity");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
+
+//        capabilities.setCapability("automtionName", "Appium");
+//        capabilities.setCapability("platformName", "XCUITest");
+//        capabilities.setCapability("platformVersion","10.2.1");
+//        capabilities.setCapability("deviceName", "Bangalore Field Team iPad Air2");
+//        capabilities.setCapability("udid", "1e662c60d3b9df0372ea2cc8a82f9fc0e411ef63");
+//        capabilities.setCapability("bundleId", "com.aconex.field.mobile.dev");
+//        capabilities.setCapability("xcodeConfigFile", "~/appium.xcconfig");
+//
+//        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(new AppiumFieldDecorator(driver), new LoginPage());
